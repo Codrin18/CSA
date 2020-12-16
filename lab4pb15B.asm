@@ -18,31 +18,29 @@ segment data use32 class=data
 segment code use32 class=code
     start:
         ; ...
-        lea si,[s] ; original array offset
-        lea di,[d] ; destination array offset
+        lea esi,[s] ; original array offset
+        lea edi,[d] ; destination array offset
         mov ecx,l ; length of original array
         
         repeta:
-            mov ax,[si]
-            inc si
-            mov [di], ax
-            inc di
+            mov ax,[esi]
+            inc esi
+            mov [edi], ax
+            inc edi
         loop repeta
         
-        mov esi,offset d
-        mov edi,sizeof d 
-        add edi,offset d 
-        sub edi,type d 
+        lea esi, [d]
+        mov edi, l*2
         mov ecx,0
         mov ecx,l*2
         shr ecx, 1
         reverseLoop:
-            mov eax, [esi]
-            mov ebx, [edi]
-            mov [edi], eax
-            mov [esi], ebx
-            add esi,type d 
-            sub edi,type d
+            mov ax, [esi]
+            mov bx, [d+edi]
+            mov [d+edi], ax
+            mov [esi], bx
+            add esi, 2
+            add edi, 2
         loop reverseLoop
         ; exit(0)
         push    dword 0      ; push the parameter for exit onto the stack

@@ -22,17 +22,17 @@ segment code use32 class=code
         mov ebx,0
         mov ecx,0
         
-        lea si,[s]
-        lea di,[d]
-        mov cx,0
-        mov cx, l-1
+        lea esi,[s]
+        lea edi,[d]
+        mov ecx,0
+        mov ecx, l-1
         repeta:
-            mov al,[si]
-            mov bl,[si+1]
+            mov al,[esi]
+            mov bl,[esi+1]
             imul bl ; ax = al * bl 
-            mov [di],ax
-            inc si
-            inc di
+            mov [edi],ax
+            inc esi
+            inc edi
         loop repeta
         ; exit(0)
         push    dword 0      ; push the parameter for exit onto the stack
