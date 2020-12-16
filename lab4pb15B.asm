@@ -11,7 +11,7 @@ import exit msvcrt.dll    ; exit is a function that ends the calling process. It
 ; our data is declared here (the variables needed by our program)
 segment data use32 class=data
     ; ...
-    s dd 10d,20d,30d,40d,50d
+    s dd 12345678h, 23456789h
     l equ ($-s)/4 
     d times (l*2) dw 0
 ; our code starts here
